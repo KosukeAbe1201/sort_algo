@@ -1,6 +1,6 @@
 class Array
-  def build_heap(arr)
-    parent = (arr.length - 1) / 2#親ノードのインデックス
+  def build_heap
+    parent = (length - 1) / 2#親ノードのインデックス
     node_cnt = parent
 
     until node_cnt < 0
@@ -8,19 +8,19 @@ class Array
       r_child = l_child + 1#右ノードのインデックス
 
       #右ノードが最大の場合
-      if arr[r_child] && arr[r_child] >= arr[l_child] && arr[r_child] > arr[parent]
-          arr.swap!(r_child, parent)
+      if self[r_child] && self[r_child] >= self[l_child] && self[r_child] > self[parent]
+          swap!(r_child, parent)
           parent = r_child
       #左ノードが最大の場合
-      elsif arr[l_child] && arr[l_child] > arr[parent]
-          arr.swap!(l_child, parent)
+      elsif self[l_child] && self[l_child] > self[parent]
+          swap!(l_child, parent)
           parent = l_child
       else
         node_cnt -= 1
         parent = node_cnt
       end
     end
-    arr
+    self
   end
 
   def swap!(a, b)
@@ -31,7 +31,7 @@ class Array
     arr = self.dup
     res = []
     until arr.empty?
-      heap = build_heap(arr)
+      heap = arr.build_heap
       heap.swap!(-1, 0)
       res.unshift(heap.delete_at(-1))
     end
