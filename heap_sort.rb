@@ -1,5 +1,5 @@
 class Array
-  def build_heap
+  def build_heap!
     parent = (length - 1) / 2#親ノードのインデックス
     node_cnt = parent
 
@@ -31,7 +31,7 @@ class Array
     arr = self.dup
     res = []
     until arr.empty?
-      heap = arr.build_heap
+      heap = arr.build_heap!
       heap.swap!(-1, 0)
       res.unshift(heap.delete_at(-1))
     end
